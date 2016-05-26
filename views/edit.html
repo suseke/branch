@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta charset="utf-8">
+        <meta name="author" content="常伟">
+        <title>添加学生 - 学生信息管理系统</title>
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <form action="/api/student/edit/{{student.id}}" method="POST">
+            <input type="text" name="name"
+             placeholder="请填写学生姓名" required
+             pattern="^[\u4e00-\u9fa5]{2,4}$" value="{{student.name}}"><br>
+             
+            <input type="radio" name="isMale" id="male" value="true" {{student.isMale ? 'checked' : ''}}>
+            <label for="male">男</label>
+            <input type="radio" name="isMale" id="female" value="false" {{student.isMale ? '' : 'checked'}}>
+            <label for="female">女</label><br>
+            
+            <select name="age">
+                <option value="18" {{student.age==18 ? 'selected': ''}}>18</option>
+                <option value="19" {{student.age==19 ? 'selected': ''}}>19</option>
+                <option value="20" {{student.age==20 ? 'selected': ''}}>20</option>
+                <option value="21" {{student.age==21 ? 'selected': ''}}>21</option>
+                <option value="22" {{student.age==22 ? 'selected': ''}}>22</option>
+                <option value="23" {{student.age==23 ? 'selected': ''}}>23</option>
+                <option value="24" {{student.age==24 ? 'selected': ''}}>24</option>
+                <option value="25" {{student.age==25 ? 'selected': ''}}>25</option>
+                <option value="26" {{student.age==26 ? 'selected': ''}}>26</option>
+                <option value="27" {{student.age==27 ? 'selected': ''}}>27</option>
+            </select><br>
+            
+            <input type="tel" name="phone" placeholder="请填写手机号"
+             required pattern="^[1][3-8]\d{9}$" value="{{student.phone}}"><br>
+            
+            <input type="email" name="email" placeholder="请输入电子邮箱地址"
+             required value="{{student.email}}"><br>
+             
+            <textarea name="description" cols="100" rows="10"
+             placeholder="请填写学生其它信息">{{student.description}}</textarea><br>
+             
+            <input type="submit" value="提交">
+        </form>
+        <script src="/libs/jquery.js"></script>
+        <script src="/scripts/add.js"></script>
+    </body>
+</html>

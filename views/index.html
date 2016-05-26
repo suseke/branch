@@ -28,7 +28,10 @@
                 <td>{{s.age}}</td>
                 <td>{{s.phone}}</td>
                 <td>{{s.email}}</td>
-                <td><button onclick="removeStudent('{{s.id}}')">删除</button></td>
+                <td>
+                    <button onclick="location.href='/edit/{{s.id}}'">修改</button>
+                    <button onclick="removeStudent('{{s.id}}')">删除</button>
+                </td>
             </tr>
             {{/each}}
         </table>

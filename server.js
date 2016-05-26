@@ -78,6 +78,21 @@ app.post('/api/student/add', (req, res) => {
     })
 })
 
+app.post('/api/student/edit/:id', (req, res) => {
+    req.body.ip = req.ip
+    req.body.updateTime = new Date()
+    
+    console.log(req.body)
+    
+    Student.findByIdAndUpdate(req.params.id, req.body, err => {
+        if(err){
+            res.json({code: 'error', message: '系统错误'})
+        }
+        else{
+            res.json({code: 'success', message: '成功！'})
+        }
+    })
+})
 
 app.get('/', (req, res) => {
     // select对数据属性进行筛选，属性名之间用空格分隔
@@ -111,6 +126,21 @@ app.post('/api/student/remove/:id', (req, res) => {
         }
         else{
             res.json({code: 'success', message: '成功！'})
+        }
+    })
+})
+
+app.get('/edit/:id', (req, res) => {
+    Student.findById(req.params.id, (err, data) => {
+        if(err){
+            //跳转到错误页
+        }
+        else{
+            var student = data.toObject()
+            student.id = student._id.toString()
+            delete student._id
+            
+            res.render('edit', {student})
         }
     })
 })
