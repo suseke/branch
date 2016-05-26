@@ -31,6 +31,9 @@
             .glyphicon{
                 cursor: pointer;
             }
+            .table{
+                margin-bottom: 0;
+            }
         </style>
     </head>
     <body>
@@ -58,7 +61,7 @@
             </div>
         </header>
         <div class="container toolbar">
-            <button class="btn btn-success" onclick="location.href='/add.html'">添加学生</button>
+            <button class="btn btn-success" onclick="location.href='/add'">添加学生</button>
             <button class="btn btn-warning" data-toggle="modal" data-target="#myModal">
                 <span class="glyphicon glyphicon-search"></span> 搜索
             </button>
@@ -92,6 +95,12 @@
                     {{/each}}
                 </table>
             </div>
+            <nav>
+                <ul class="pager">
+                    <li><a href="#">上一页</a></li>
+                    <li><a href="#">下一页</a></li>
+                </ul>
+            </nav>
         </div>
         
         <!-- Modal -->
