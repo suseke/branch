@@ -97,8 +97,12 @@
             </div>
             <nav>
                 <ul class="pager">
-                    <li><a href="#">上一页</a></li>
-                    <li><a href="#">下一页</a></li>
+                    <li class="{{page <= 1 ? 'disabled' : ''}}">
+                        <a href="{{page <= 1 ? '#' : '/' + (page - 1)}}">上一页</a>
+                    </li>
+                    <li class="{{page >= pageCount ? 'disabled' : ''}}">
+                        <a href="{{page >= pageCount ? '#' : '/' + (page + 1)}}">下一页</a>
+                    </li>
                 </ul>
             </nav>
         </div>
