@@ -102,16 +102,25 @@
                     {{/each}}
                 </table>
             </div>
+            
             <nav>
-                <ul class="pager">
+                <ul class="pagination">
                     <li class="{{page <= 1 ? 'disabled' : ''}}">
                         <a onclick="showPage({{page-1}}, {{pageCount}})">上一页</a>
                     </li>
+                    
+                    {{each pages as p i}}
+                    <li class="{{page == p ? 'active' : ''}}">
+                        <a onclick="showPage({{p}}, {{pageCount}})">{{p}}</a>
+                    </li>
+                    {{/each}}
+                    
                     <li class="{{page >= pageCount ? 'disabled' : ''}}">
                         <a onclick="showPage({{page+1}}, {{pageCount}})">下一页</a>
                     </li>
                 </ul>
             </nav>
+            
         </script>
         
         <!-- Modal -->
