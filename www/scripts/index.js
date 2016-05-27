@@ -28,11 +28,14 @@ function showPage(page, pageCount){
     
     $.post(
         '/api/index/' + page,
-        null,
+        $('form').serialize(),
         function(res){
             if(res.code == 'success'){
                 var html = template('table-template', res.data)
                 $('.data').html(html)
+                
+                //关闭模态框
+                // $('#searchModal').modal('hide')
             }
             else{
                 alert(res.message)

@@ -44,15 +44,50 @@ route.post('/(:page)?', (req, res) => {
     // console.log(getPages(3, 72))
     // console.log(getPages(70, 72))
     
+    console.log(req.body)
+    
+    var filter = {}
+    
+    var name = req.body.name
+    if(name){
+        name = name.trim()
+        if(name.length > 0){
+            filter.name = {
+                '$regex': `.*?${name}.*?`
+                // 正则表达式：
+                // .表示除回车换行外的任意字符
+                // *表示0个或多个
+                // ?表示可以有也可以没有
+            }
+        }
+    }
+    var isMale = req.body.isMale
+    if(isMale){
+        isMale = isMale.trim()
+        if(isMale.length > 0){
+            filter.isMale = isMale == 'true'
+        }
+    }
+    var phone = req.body.phone
+    if(phone){
+        phone = phone.trim()
+        if(phone.length > 0){
+            filter.phone = {
+                '$regex': `.*?${phone}.*?`
+            }
+        }
+    }
+    
+    
     var page = req.params.page
     page = page || 1
     
     page = parseInt(page)
-    if(page < 1) page = 1
+    
     
     var pageSize = 5
 
-    Student.find().count((err, total) => {
+    Student.find(filter).count((err, total) => {
         // console.log(total)
         
         if(err){
@@ -62,8 +97,10 @@ route.post('/(:page)?', (req, res) => {
             var pageCount = Math.ceil(total / pageSize)
             
             if(page > pageCount) page = pageCount
+            if(page < 1) page = 1
             
-            Student.find()
+            Student.find(filter)
+            .sort({createTime:-1})
             .skip((page - 1) * pageSize)
             .limit(pageSize)
             .select('name isMale age phone email')
