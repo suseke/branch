@@ -20,10 +20,11 @@ app.use(bodyParser.urlencoded({extended: true}))
 // 好处是：
 // 1.每个文件中的代码都很少，便于阅读和修改
 // 2.将代码分散不同的文件中可以多人同时开发
+app.use('/api/index', require('./routes/api/index'))
 app.use('/api/student', require('./routes/api/student'))
 app.use('/edit', require('./routes/edit'))
 app.use('/add', require('./routes/add'))
-app.use('/', require('./routes/index'))
+
 
 
 app.listen(3000, () => console.log('正在运行...'))

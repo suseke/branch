@@ -34,6 +34,9 @@
             .table{
                 margin-bottom: 0;
             }
+            .pager a{
+                cursor: pointer;
+            }
         </style>
     </head>
     <body>
@@ -66,7 +69,11 @@
                 <span class="glyphicon glyphicon-search"></span> 搜索
             </button>
         </div>
-        <div class="container">
+        <div class="container data">
+            
+        </div>
+        
+        <script type="text/html" id="table-template">
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
                     <tr>
@@ -98,14 +105,14 @@
             <nav>
                 <ul class="pager">
                     <li class="{{page <= 1 ? 'disabled' : ''}}">
-                        <a href="{{page <= 1 ? '#' : '/' + (page - 1)}}">上一页</a>
+                        <a onclick="showPage({{page-1}}, {{pageCount}})">上一页</a>
                     </li>
                     <li class="{{page >= pageCount ? 'disabled' : ''}}">
-                        <a href="{{page >= pageCount ? '#' : '/' + (page + 1)}}">下一页</a>
+                        <a onclick="showPage({{page+1}}, {{pageCount}})">下一页</a>
                     </li>
                 </ul>
             </nav>
-        </div>
+        </script>
         
         <!-- Modal -->
         <div class="modal fade" id="removeModal" tabindex="-1" role="dialog">
@@ -126,6 +133,7 @@
         
         <script src="/libs/jquery.js"></script>
         <script src="/libs/bootstrap/js/bootstrap.js"></script>
+        <script src="/libs/template.js"></script>
         <script src="/scripts/index.js"></script>
     </body>
 </html>
