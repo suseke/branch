@@ -1,0 +1,4 @@
+node_modules/
+# 可以注释
+# *.json  支持*匹配 忽略json文件
+# .gitignore
