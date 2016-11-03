@@ -24,6 +24,7 @@ app.use('/api/index', require('./routes/api/index'))
 app.use('/api/student', require('./routes/api/student'))
 app.use('/edit', require('./routes/edit'))
 app.use('/add', require('./routes/add'))
+//在add.js里的路由前面都加上'/add'
 
 
 
